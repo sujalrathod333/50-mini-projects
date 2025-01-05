@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fibonacci Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fibonacci Calculator</h1>
+    <input type="number" id="fibInput" placeholder="Enter a number" min="0" />
+    <button onclick="calculateFibonacci()">Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const fibonacci = (num) => {
+      if (num <= 1) {
+        return num;
+      } 
+      let a = 0, b = 1, result;
+      for (let i = 2; i <= num; i++) {
+        result = a + b;
+        a = b;
+        b = result;
+      }
+      return result;
+    };
+
+    const calculateFibonacci = () => {
+      const input = document.getElementById('fibInput').value;
+      const resultDiv = document.getElementById('result');
+
+      if (input === '' || input < 0 || isNaN(input)) {
+        resultDiv.textContent = 'Please enter a valid non-negative number.';
+        return;
+      }
+
+      const num = parseInt(input, 10);
+      const fibValue = fibonacci(num);
+      resultDiv.textContent = `Fibonacci(${num}) = ${fibValue}`;
+    };
+  </script>
+</body>
+</html>

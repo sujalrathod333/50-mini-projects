@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SetInterval Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .log {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SetInterval Example</h1>
+        <button onclick="startInterval()">Start</button>
+        <div class="log" id="log"></div>
+    </div>
+
+    <script>
+        function tryFunction() {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += "This line repeats every 1 second, up to 5 times.<br>";
+        }
+
+        function startInterval() {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML = ""; // Clear previous logs
+            const intervalId = setInterval(tryFunction, 1000);
+
+            setTimeout(() => { 
+                clearInterval(intervalId);
+                logDiv.innerHTML += "Stopped after 5 executions.<br>";
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

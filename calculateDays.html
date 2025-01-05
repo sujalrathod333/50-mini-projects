@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days Difference Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Days Difference Calculator</h1>
+    <input type="date" id="date1" placeholder="Enter first date" />
+    <input type="date" id="date2" placeholder="Enter second date" />
+    <button onclick="calculateDays()">Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const calculateDays = () => {
+      const date1 = document.getElementById('date1').value;
+      const date2 = document.getElementById('date2').value;
+      const resultDiv = document.getElementById('result');
+
+      if (!date1 || !date2) {
+        resultDiv.textContent = "Please select both dates.";
+        return;
+      }
+
+      const d1 = new Date(date1);
+      const d2 = new Date(date2);
+      const diff = Math.abs(d1 - d2);
+      const days = diff / (24 * 60 * 60 * 1000);
+
+      resultDiv.textContent = `The difference is ${days} days.`;
+    };
+  </script>
+</body>
+</html>

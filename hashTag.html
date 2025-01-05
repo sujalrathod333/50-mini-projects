@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hashtag Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hashtag Generator</h1>
+    <input type="text" id="inputString" placeholder="Enter a phrase" />
+    <button onclick="generateHashtag()">Generate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const hashTag = (str) => {
+      if (str.length > 280 || str.trim().length === 0) {
+        return false;
+      }
+      str = str
+        .split(" ")
+        .map((curElem) => curElem.replace(curElem[0], curElem[0].toUpperCase()));
+      return `#${str.join("")}`;
+    };
+
+    const generateHashtag = () => {
+      const input = document.getElementById('inputString').value;
+      const resultDiv = document.getElementById('result');
+      const hashtag = hashTag(input);
+
+      if (hashtag) {
+        resultDiv.textContent = `Generated Hashtag: ${hashtag}`;
+        resultDiv.classList.remove('error');
+      } else {
+        resultDiv.textContent = 'Input must not be empty or exceed 280 characters.';
+        resultDiv.classList.add('error');
+      }
+    };
+  </script>
+</body>
+</html>

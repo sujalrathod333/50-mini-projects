@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+    h1 {
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #28a745;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>OTP Generator</h1>
+    <label for="otp-length">Enter OTP Length:</label>
+    <input type="number" id="otp-length" placeholder="e.g., 4" min="1">
+    <button onclick="generateOTP()">Generate OTP</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const generateOTP = () => {
+      const length = document.getElementById('otp-length').value;
+      if (!length || length <= 0) {
+        document.getElementById('result').textContent = 'Please enter a valid length.';
+        return;
+      }
+
+      let otp = '';
+      const numbers = '0123456789';
+      for (let i = 0; i < length; i++) {
+        const index = Math.floor(Math.random() * numbers.length);
+        otp += numbers[index];
+      }
+
+      document.getElementById('result').textContent = `Your OTP: ${otp}`;
+    };
+  </script>
+</body>
+</html>

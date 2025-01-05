@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Character Counter</h1>
+    <input type="text" id="wordInput" placeholder="Enter a word" />
+    <input type="text" id="charInput" placeholder="Enter a character" maxlength="1" />
+    <button onclick="countCharacter()">Count</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const countChar = (word, char) => {
+      word = word.toLowerCase();
+      char = char.toLowerCase();
+
+      return word.split("").reduce((accum, curChar) => (curChar === char ? accum + 1 : accum), 0);
+    };
+
+    const countCharacter = () => {
+      const word = document.getElementById("wordInput").value.trim();
+      const char = document.getElementById("charInput").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!word || !char || char.length !== 1) {
+        resultDiv.textContent = "Please enter a valid word and a single character.";
+        return;
+      }
+
+      const count = countChar(word, char);
+      resultDiv.textContent = `The character "${char}" appears ${count} times in "${word}".`;
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const startWith = (str, substr) => {
+      // return str.toLowerCase().startsWith(substr.toLowerCase());
+      return str.toLowerCase().slice(0, substr.length) === substr.toLowerCase();
+    }
+    console.log(startWith("Hello world" , "hello"));
+    console.log(startWith("hello world" , "world"));
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Scrambler</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #007BFF;
+      border-radius: 5px;
+      width: 300px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Word Scrambler</h1>
+  <label for="wordInput">Enter a Word:</label>
+  <input type="text" id="wordInput" placeholder="e.g., javascript">
+  <button onclick="scramble()">Scramble Word</button>
+  <div id="result" class="result" style="display: none;"></div>
+
+  <script>
+    const scrambleWord = (word) => {
+      let str = word.split('');
+      for (let i = str.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [str[i], str[j]] = [str[j], str[i]];
+      }
+      return str.join('');
+    };
+
+    const scramble = () => {
+      const input = document.getElementById('wordInput').value.trim();
+      if (!input) {
+        alert('Please enter a word!');
+        return;
+      }
+
+      const scrambledWord = scrambleWord(input);
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.textContent = `Scrambled Word: ${scrambledWord}`;
+    };
+  </script>
+</body>
+</html>

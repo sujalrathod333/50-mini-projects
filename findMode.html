@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Mode</title>
+</head>
+<body>
+  <h1>Find the Mode of an Array</h1>
+  <button onclick="getMode()">Enter Array and Find Mode</button>
+  <p id="result"></p>
+
+  <script>
+    const findMode = (arr) => {
+      if (arr.length === 0) return "No mode for an empty array.";
+
+      let counts = {};
+      let maxNum = 0;
+      let modes = [];
+
+      for (let element of arr) {
+        counts[element] = (counts[element] || 0) + 1;
+
+        if (counts[element] > maxNum) {
+          maxNum = counts[element];
+          modes = [element];
+        } else if (counts[element] === maxNum && !modes.includes(element)) {
+          modes.push(element);
+        }
+      }
+
+      return modes.length === 1
+        ? `Mode: ${modes[0]}`
+        : `Modes: ${modes.join(", ")}`;
+    };
+
+    const getMode = () => {
+      const input = prompt("Enter an array of numbers, separated by commas (e.g., 1,1,2,2,1):");
+      const arr = input.split(",").map(Number);
+
+      if (arr.some(isNaN)) {
+        document.getElementById("result").innerHTML = "Please enter a valid array of numbers.";
+      } else {
+        const modeResult = findMode(arr);
+        document.getElementById("result").innerHTML = modeResult;
+      }
+    };
+  </script>
+</body>
+</html>

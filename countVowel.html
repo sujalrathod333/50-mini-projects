@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Vowels</h1>
+ <input type="text" id="input" placeholder="Enter a sentence">
+ <button onclick="countVowel()">Count Vowel</button>
+ <p id="result"></p>
+  <script>
+
+    const countVowel = () => {
+      const str = document.getElementById("input").value;
+    let vowels= ["a", "e", "i", "o", "u"];
+    let arr = str.split('');
+    let count =0;
+    for(let char of arr){
+      if(vowels.includes(char.toLowerCase())){
+        count++;
+      }
+    }
+    document.getElementById("result").innerText = count;
+    }
+  </script>
+</body>
+</html>

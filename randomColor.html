@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Hex Color Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .color-box {
+      margin-top: 20px;
+      height: 100px;
+      width: 100px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .color-code {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Random Hex Color Generator</h1>
+    <button onclick="generateRandomColor()">Generate Color</button>
+    <div class="color-box" id="colorBox"></div>
+    <div class="color-code" id="colorCode"></div>
+  </div>
+
+  <script>
+    const generateRandomColor = () => {
+      const randomHex = () => {
+        return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+      };
+
+      const color = randomHex();
+      const colorBox = document.getElementById('colorBox');
+      const colorCode = document.getElementById('colorCode');
+
+      colorBox.style.backgroundColor = color;
+      colorCode.textContent = color;
+    };
+  </script>
+</body>
+</html>

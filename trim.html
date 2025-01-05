@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Trimmer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .result span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>String Trimmer</h1>
+        <input type="text" id="inputString" placeholder="Enter a string with spaces" />
+        <button onclick="trimString()">Trim</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const trimString = () => {
+            const input = document.getElementById('inputString').value;
+            const originalLength = input.length;
+            const trimmedString = input.trim();
+            const trimmedLength = trimmedString.length;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                Original String: "<span>${input}</span>"<br>
+                Original Length: <span>${originalLength}</span><br>
+                Trimmed String: "<span>${trimmedString}</span>"<br>
+                Trimmed Length: <span>${trimmedLength}</span>
+            `;
+        };
+    </script>
+</body>
+</html>

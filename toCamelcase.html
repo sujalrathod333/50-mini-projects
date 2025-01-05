@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>To Camel case</h1>
+ <input type="text" id="input" placeholder="Enter a sentence">
+ <button onclick="toCamelcase()">camel Case Conversion</button>
+ <p id="result"></p>
+  <script>
+    const toCamelcase = () => {
+      const str = document.getElementById("input").value;
+       const answer = str.trim().split(" ").map((curElem, index) => {
+        if (index === 0){
+          return curElem.toLowerCase();
+        }
+        else {
+          return curElem.charAt(0).toUpperCase() + curElem.slice(1).toLowerCase();
+        }
+      }).join("");
+      document.getElementById("result").innerText = answer;
+    };
+    
+  </script>
+</body>
+</html>

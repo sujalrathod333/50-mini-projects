@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Median</title>
+</head>
+<body>
+  <h1>Find the Median</h1>
+  <p>Enter numbers separated by commas (e.g., 1,2,3,4):</p>
+  <input type="text" id="arrayInput" placeholder="Enter numbers here">
+  <button onclick="calculateMedian()">Find Median</button>
+  <p id="result"></p>
+
+  <script>
+    const findMedian = (arr) => {
+      if (!Array.isArray(arr) || arr.length === 0) {
+        return "Invalid input. Please provide a non-empty array of numbers.";
+      }
+
+      // Sort array in ascending order
+      arr.sort((a, b) => a - b);
+
+      const length = arr.length;
+      const mid = Math.floor(length / 2);
+
+      // Check if the array length is even or odd
+      if (length % 2 === 0) {
+        return (arr[mid] + arr[mid - 1]) / 2;
+      } else {
+        return arr[mid];
+      }
+    };
+
+    const calculateMedian = () => {
+      const input = document.getElementById("arrayInput").value;
+
+      // Split the input string by commas and convert to numbers
+      const arr = input.split(",").map(Number);
+
+      // Check for invalid inputs
+      if (arr.some(isNaN)) {
+        document.getElementById("result").innerHTML = "Please enter a valid array of numbers.";
+        return;
+      }
+
+      // Find and display the median
+      const median = findMedian(arr);
+      document.getElementById("result").innerHTML = `The median is: ${median}`;
+    };
+  </script>
+</body>
+</html>

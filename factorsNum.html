@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factor Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #007BFF;
+      border-radius: 5px;
+      width: 300px;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Factor Calculator</h1>
+  <label for="numberInput">Enter a Number:</label>
+  <input type="number" id="numberInput" placeholder="e.g., 10">
+  <button onclick="calculateFactors()">Get Factors</button>
+  <div id="result" class="result" style="display: none;"></div>
+
+  <script>
+    const calculateFactors = () => {
+      const input = document.getElementById('numberInput').value;
+      const num = parseInt(input, 10);
+
+      if (isNaN(num) || num <= 0) {
+        alert("Please enter a positive number!");
+        return;
+      }
+
+      const factors = [];
+      for (let i = 1; i <= num; i++) {
+        if (num % i === 0) {
+          factors.push(i);
+        }
+      }
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.textContent = `Factors of ${num}: ${factors.join(', ')}`;
+    };
+  </script>
+</body>
+</html>

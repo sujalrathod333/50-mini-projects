@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverse String</title>
+</head>
+<body>
+  <h1>Reverse a String</h1>
+  <p>Enter a string to reverse:</p>
+  <input type="text" id="stringInput" placeholder="Enter a string">
+  <button onclick="displayReversedString()">Reverse String</button>
+  <p id="result"></p>
+
+  <script>
+    const reverseString = (str) => {
+      let reversed = '';
+      for (let i = str.length - 1; i >= 0; i--) {
+        reversed += str[i];
+      }
+      return reversed;
+    };
+
+    const displayReversedString = () => {
+      const input = document.getElementById("stringInput").value;
+
+      // Handle empty input
+      if (input.trim() === "") {
+        document.getElementById("result").innerHTML = "Please enter a valid string.";
+        return;
+      }
+
+      const reversedString = reverseString(input);
+      document.getElementById("result").innerHTML = `Reversed string: ${reversedString}`;
+    };
+  </script>
+</body>
+</html>

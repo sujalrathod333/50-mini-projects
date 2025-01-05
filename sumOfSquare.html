@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Sum Of Square Arr Num</h1>
+  <input type="text" id="input" placeholder="Enter numbers separated by commas">
+  <button onclick="sumOfSquare()">Button</button>
+  <p id="result"></p>
+  <script>
+    const sumOfSquare = () => {
+      const input = document.getElementById('input').value;
+      const arr = input.split(',').map(num => num.trim());
+      const result= arr.reduce((accum, curElem) => accum = accum + (curElem*curElem),0);
+      document.getElementById("result").innerText = result;
+    }
+    
+    
+  </script>
+</body>
+</html>

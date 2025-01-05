@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculate Mean</title>
+</head>
+<body>
+  <h1>Calculate Mean</h1>
+  <p>Enter numbers separated by commas (e.g., 1,2,3,4):</p>
+  <input type="text" id="arrayInput" placeholder="Enter numbers here">
+  <button onclick="displayMean()">Calculate Mean</button>
+  <p id="result"></p>
+
+  <script>
+    const calculateMean = (arr) => {
+      if (arr.length === 0) {
+        return "The array is empty. Cannot calculate the mean.";
+      }
+
+      // Sum the array elements and divide by the length
+      const sum = arr.reduce((accum, curElem) => accum + curElem, 0);
+      return sum / arr.length;
+    };
+
+    const displayMean = () => {
+      const input = document.getElementById("arrayInput").value;
+
+      // Convert input string into an array of numbers
+      const arr = input.split(",").map(Number);
+
+      // Validate input
+      if (arr.some(isNaN)) {
+        document.getElementById("result").innerHTML = "Please enter a valid array of numbers.";
+        return;
+      }
+
+      // Calculate and display the mean
+      const mean = calculateMean(arr);
+      document.getElementById("result").innerHTML = `The mean is: ${mean}`;
+    };
+  </script>
+</body>
+</html>

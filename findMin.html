@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Minimum</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Find Minimum in Array</h1>
+    <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas" />
+    <button onclick="findMinimum()">Find Minimum</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const findMin = (arr) => Math.min(...arr);
+
+    const findMinimum = () => {
+      const input = document.getElementById('arrayInput').value;
+      const resultDiv = document.getElementById('result');
+
+      try {
+        const array = input.split(',').map(Number);
+        if (array.some(isNaN)) throw new Error("Invalid input: all values must be numbers.");
+        
+        const minValue = findMin(array);
+        resultDiv.textContent = `Minimum Value: ${minValue}`;
+      } catch (error) {
+        resultDiv.textContent = `Error: ${error.message}`;
+      }
+    };
+  </script>
+</body>
+</html>

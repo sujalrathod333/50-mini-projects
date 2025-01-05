@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FizzBuzz Input</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 16px;
+      text-align: left;
+      white-space: pre-wrap;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>FizzBuzz Generator</h1>
+    <form id="fizzBuzzForm">
+      <input type="number" id="start" placeholder="Enter start number" required>
+      <input type="number" id="end" placeholder="Enter end number" required>
+      <button type="submit">Generate</button>
+    </form>
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    const fizzBuzz = (num1, num2) => {
+      let arr = [];
+      for (let i = num1; i <= num2; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+          arr.push("FizzBuzz");
+        } else if (i % 3 === 0) {
+          arr.push("Fizz");
+        } else if (i % 5 === 0) {
+          arr.push("Buzz");
+        } else {
+          arr.push(i);
+        }
+      }
+      return arr;
+    };
+
+    const form = document.getElementById("fizzBuzzForm");
+    const output = document.getElementById("output");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const start = parseInt(document.getElementById("start").value, 10);
+      const end = parseInt(document.getElementById("end").value, 10);
+
+      if (start > end) {
+        output.textContent = "Start number must be less than or equal to end number.";
+        return;
+      }
+
+      const result = fizzBuzz(start, end);
+      output.textContent = result.join("\n");
+    });
+  </script>
+</body>
+</html>

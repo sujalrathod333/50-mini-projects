@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check if Arrays are Equal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: calc(100% - 24px);
+      height: 80px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Check if Arrays are Equal</h1>
+    <textarea id="array1" placeholder="Enter first array (e.g., [1,2,3])"></textarea>
+    <textarea id="array2" placeholder="Enter second array (e.g., [1,2,3])"></textarea>
+    <button onclick="checkArrays()">Check</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const arrEqual = (arr1, arr2) => {
+      if (arr1.length !== arr2.length) {
+        return false;
+      }
+      return arr1.every((curElem, index) => curElem === arr2[index]);
+    };
+
+    const checkArrays = () => {
+      const array1Input = document.getElementById("array1").value.trim();
+      const array2Input = document.getElementById("array2").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      try {
+        const arr1 = JSON.parse(array1Input);
+        const arr2 = JSON.parse(array2Input);
+
+        if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+          resultDiv.textContent = "Please enter valid arrays.";
+          return;
+        }
+
+        const areEqual = arrEqual(arr1, arr2);
+        resultDiv.textContent = areEqual
+          ? "The arrays are equal."
+          : "The arrays are not equal.";
+      } catch (error) {
+        resultDiv.textContent = "Invalid input. Please enter valid arrays.";
+      }
+    };
+  </script>
+</body>
+</html>

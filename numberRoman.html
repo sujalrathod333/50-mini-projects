@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roman Numeral Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    input {
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 80%;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Roman Numeral Converter</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number" min="1" />
+    <button onclick="convertToRoman()">Convert</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const numberRoman = (num) => {
+      const roman = [
+        {value: 1000, numeral: 'M'},
+        {value: 900, numeral: 'CM'},
+        {value: 500, numeral: 'D'},
+        {value: 400, numeral: 'CD'},
+        {value: 100, numeral: 'C'},
+        {value: 90, numeral: 'XC'},
+        {value: 50, numeral: 'L'},
+        {value: 40, numeral: 'XL'},
+        {value: 10, numeral: 'X'},
+        {value: 9, numeral: 'IX'},
+        {value: 5, numeral: 'V'},
+        {value: 4, numeral: 'IV'},
+        {value: 1, numeral: 'I'},
+      ];
+
+      let result = ''; 
+      for (let i = 0; i < roman.length; i++) {
+        while (num >= roman[i].value) {
+          result = result + roman[i].numeral;
+          num = num - roman[i].value;
+        }
+      }
+      return result;
+    }
+
+    function convertToRoman() {
+      const number = parseInt(document.getElementById('numberInput').value);
+      const resultDiv = document.getElementById('result');
+      if (isNaN(number) || number < 1) {
+        resultDiv.innerHTML = "Please enter a valid number greater than 0.";
+      } else {
+        const romanNumeral = numberRoman(number);
+        resultDiv.innerHTML = `Roman Numeral: ${romanNumeral}`;
+      }
+    }
+  </script>
+</body>
+</html>

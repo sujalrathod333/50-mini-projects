@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const numberRec = (a,b, arr=[]) => {
+      if(a<=b){
+        arr.push(a);
+        return numberRec(a+1, b, arr)
+      }
+      return arr
+    }
+    console.log(numberRec(0, 8));
+    console.log(numberRec(5, 12));
+    console.log(numberRec(-22, -6));
+  </script>
+</body>
+</html>
